@@ -212,10 +212,10 @@ public class SqlDataTypeSpec extends SqlNode {
         writer.endList(frame);
       }
 
-      if (charSetName != null) {
-        writer.keyword("CHARACTER SET");
-        writer.identifier(charSetName);
-      }
+      //      if (charSetName != null) {
+      //        writer.keyword("CHARACTER SET");
+      //        writer.identifier(charSetName);
+      //      }
 
       if (collectionsTypeName != null) {
         writer.keyword(collectionsTypeName.getSimple());
