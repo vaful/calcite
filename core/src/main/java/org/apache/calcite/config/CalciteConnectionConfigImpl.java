@@ -98,6 +98,19 @@ public class CalciteConnectionConfigImpl extends ConnectionConfigImpl
             tables.toArray(new SqlOperatorTable[tables.size()])));
   }
 
+  public <T> T getCustomerValidation(Class<T> validationClass, T defaultValidation) {
+    final String validationClazz =
+            CalciteConnectionProperty.CUSTOMER_VALIDATOR.wrap(properties).getString();
+    if (validationClazz == null || validationClazz.equals("")) {
+      return defaultValidation;
+    }
+    try {
+      return validationClass.cast(Class.forName(validationClazz).newInstance());
+    } catch (Exception e) {
+      return defaultValidation;
+    }
+  }
+
   private static void operatorTable(String s,
         Collection<SqlOperatorTable> tables) {
     switch (s) {
