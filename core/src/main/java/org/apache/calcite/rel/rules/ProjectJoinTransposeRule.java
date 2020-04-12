@@ -38,16 +38,17 @@ import java.util.List;
  * the join.
  */
 public class ProjectJoinTransposeRule extends RelOptRule {
-  public static final ProjectJoinTransposeRule INSTANCE =
-      new ProjectJoinTransposeRule(SKIP_OVER_CONDITION,
-          RelFactories.LOGICAL_BUILDER);
 
   private static final PushProjector.ExprCondition SKIP_OVER_CONDITION =
-          new PushProjector.ExprConditionImpl() {
-            @Override public boolean test(RexNode expr) {
-              return expr instanceof RexOver;
-            }
-          };
+      new PushProjector.ExprConditionImpl() {
+        @Override public boolean test(RexNode expr) {
+          return expr instanceof RexOver;
+        }
+      };
+
+  public static final ProjectJoinTransposeRule INSTANCE =
+            new ProjectJoinTransposeRule(SKIP_OVER_CONDITION,
+                    RelFactories.LOGICAL_BUILDER);
 
   //~ Instance fields --------------------------------------------------------
 
