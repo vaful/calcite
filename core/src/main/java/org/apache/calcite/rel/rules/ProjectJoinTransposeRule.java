@@ -42,7 +42,7 @@ public class ProjectJoinTransposeRule extends RelOptRule {
   private static final PushProjector.ExprCondition SKIP_OVER_CONDITION =
       new PushProjector.ExprConditionImpl() {
         @Override public boolean test(RexNode expr) {
-          return expr instanceof RexOver;
+          return !(expr instanceof RexOver);
         }
       };
 
